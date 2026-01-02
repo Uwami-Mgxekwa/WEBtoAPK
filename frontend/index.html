@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBtoAPK - Convert Your Website to Android App</title>
+    <meta name="description" content="Transform your HTML, CSS, and JavaScript web applications into installable Android APK files instantly. Free and easy to use.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-gradient)"/>
+                    <path d="M16 8L22 12V20L16 24L10 20V12L16 8Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>WEBtoAPK</span>
+            </div>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="https://brelinx.com" target="_blank" class="brand-link">by brelinx.com</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Transform Your Website Into an
+                    <span class="gradient-text">Android App</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Convert HTML, CSS, and JavaScript into a fully functional Android APK in minutes. 
+                    No coding required, completely free.
+                </p>
+                <a href="#converter" class="cta-button">
+                    <span>Start Converting</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose WEBtoAPK?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate APK files in under 2 minutes with our optimized build pipeline</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Fully Customizable</h3>
+                    <p>Set your app name, package ID, version, and custom icon</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Your files are processed securely and deleted after conversion</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Ready to Install</h3>
+                    <p>Get signed APK files ready for installation on any Android device</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Converter Section -->
+    <section id="converter" class="converter">
+        <div class="container">
+            <div class="converter-card">
+                <h2 class="converter-title">Create Your APK</h2>
+                
+                <!-- Step Indicator -->
+                <div class="steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Upload Files</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Configure</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Generate</div>
+                    </div>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section" id="uploadSection">
+                    <div class="dropzone" id="dropzone">
+                        <svg class="dropzone-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                            <path d="M32 16V40M32 16L24 24M32 16L40 24" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 40V48C16 50.2091 17.7909 52 20 52H44C46.2091 52 48 50.2091 48 48V40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                        <h3>Drop your files here</h3>
+                        <p>or click to browse</p>
+                        <p class="file-types">HTML, CSS, JS, Images, Fonts</p>
+                        <input type="file" id="fileInput" multiple accept=".html,.css,.js,.png,.jpg,.jpeg,.svg,.woff,.woff2,.ttf">
+                    </div>
+                    
+                    <div class="file-list" id="fileList"></div>
+                    
+                    <button class="btn btn-primary" id="nextToConfig" disabled>
+                        Continue to Configuration
+                    </button>
+                </div>
+
+                <!-- Configuration Section -->
+                <div class="config-section hidden" id="configSection">
+                    <form id="configForm" class="config-form">
+                        <div class="form-group">
+                            <label for="appName">App Name *</label>
+                            <input type="text" id="appName" placeholder="My Awesome App" required>
+                            <span class="form-hint">This will appear on the user's home screen</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="packageName">Package Name *</label>
+                            <input type="text" id="packageName" placeholder="com.example.myapp" required pattern="[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+">
+                            <span class="form-hint">Reverse domain notation (e.g., com.yourcompany.appname)</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="versionName">Version Name *</label>
+                                <input type="text" id="versionName" placeholder="1.0.0" value="1.0.0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="versionCode">Version Code *</label>
+                                <input type="number" id="versionCode" placeholder="1" value="1" required min="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appIcon">App Icon (Optional)</label>
+                            <div class="icon-upload">
+                                <input type="file" id="appIcon" accept="image/png,image/jpeg">
+                                <label for="appIcon" class="icon-upload-label">
+                                    <div class="icon-preview" id="iconPreview">
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                            <path d="M24 12V28M24 12L18 18M24 12L30 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 28V32C12 34.2091 13.7909 36 16 36H32C34.2091 36 36 34.2091 36 32V28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>Upload Icon</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <span class="form-hint">PNG or JPG, recommended 512x512px</span>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="backToUpload">Back</button>
+                            <button type="submit" class="btn btn-primary">Generate APK</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Building Section -->
+                <div class="building-section hidden" id="buildingSection">
+                    <div class="building-animation">
+                        <div class="spinner"></div>
+                        <h3>Building Your APK...</h3>
+                        <p id="buildStatus">Initializing build process...</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">0%</p>
+                    </div>
+                </div>
+
+                <!-- Success Section -->
+                <div class="success-section hidden" id="successSection">
+                    <div class="success-content">
+                        <div class="success-icon">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <circle cx="40" cy="40" r="38" stroke="url(#success-gradient)" stroke-width="4"/>
+                                <path d="M25 40L35 50L55 30" stroke="url(#success-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                    <linearGradient id="success-gradient" x1="0" y1="0" x2="80" y2="80">
+                                        <stop offset="0%" stop-color="#10b981"/>
+                                        <stop offset="100%" stop-color="#059669"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3>APK Generated Successfully!</h3>
+                        <p>Your Android app is ready to download and install</p>
+                        <div class="success-actions">
+                            <a href="#" id="downloadBtn" class="btn btn-primary btn-large" download>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 4V14M10 14L6 10M10 14L14 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 14V16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Download APK
+                            </a>
+                            <button class="btn btn-secondary" id="createAnother">Create Another APK</button>
+                        </div>
+                        <div class="install-instructions">
+                            <h4>Installation Instructions:</h4>
+                            <ol>
+                                <li>Transfer the APK file to your Android device</li>
+                                <li>Enable "Install from unknown sources" in Settings</li>
+                                <li>Open the APK file and tap "Install"</li>
+                                <li>Launch your new app!</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Section -->
+                <div class="error-section hidden" id="errorSection">
+                    <div class="error-content">
+                        <div class="error-icon">⚠️</div>
+                        <h3>Build Failed</h3>
+                        <p id="errorMessage">An error occurred during the build process.</p>
+                        <button class="btn btn-primary" id="tryAgain">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Upload Your Files</h3>
+                        <p>Drag and drop your HTML, CSS, JavaScript, and asset files</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Configure Your App</h3>
+                        <p>Set your app name, package identifier, version, and icon</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Generate APK</h3>
+                        <p>Our system builds your app using Apache Cordova</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Download & Install</h3>
+                        <p>Get your signed APK and install it on any Android device</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="url(#footer-logo-gradient)"/>
+                            <path d="M16 8L22 12V20L16 24L10 20V12L16 8Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="32" y2="32">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>WEBtoAPK</span>
+                    </div>
+                    <p>Transform websites into Android apps</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#converter">Get Started</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="https://github.com/yourusername/WEBtoAPK" target="_blank">Documentation</a>
+                        <a href="https://github.com/yourusername/WEBtoAPK/issues" target="_blank">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="https://brelinx.com" target="_blank">brelinx.com</a>
+                        <a href="https://brelinx.com/about" target="_blank">About Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WEBtoAPK. All rights reserved.</p>
+                <p>Powered by <a href="https://brelinx.com" target="_blank" class="brand-link">brelinx.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
