@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: webtoapk-api
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ANDROID_SDK_ROOT
+        sync: false
+      - key: JAVA_HOME
+        sync: false
+    healthCheckPath: /health
