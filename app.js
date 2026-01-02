@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function setupEventListeners() {
     // Dropzone events
-    dropzone.addEventListener('click', () => fileInput.click());
+    // dropzone.addEventListener('click', () => fileInput.click()); // REMOVED: Input covers the area via CSS
     dropzone.addEventListener('dragover', handleDragOver);
     dropzone.addEventListener('dragleave', handleDragLeave);
     dropzone.addEventListener('drop', handleDrop);
