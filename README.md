@@ -33,7 +33,7 @@ Transform your HTML, CSS, and JavaScript web applications into installable Andro
 ### Frontend Setup
 ```bash
 # No build required - static files
-# Just open frontend/index.html in browser for local testing
+# Just open index.html in the root directory in your browser for local testing
 ```
 
 ### Backend Setup
@@ -53,22 +53,21 @@ npm run dev
 
 ### Deploy Frontend to GitHub Pages
 ```bash
-# Push to gh-pages branch
-git subtree push --prefix frontend origin gh-pages
-
-# Or use GitHub Actions (see .github/workflows/deploy.yml)
+# Push root directory to gh-pages or main branch
+# Configure GitHub Pages to serve from root
 ```
 
 ### Deploy Backend to Render.com
 1. Connect your GitHub repository to Render
 2. Create a new Web Service
-3. Set build command: `cd backend && npm install`
-4. Set start command: `cd backend && npm start`
-5. Add environment variables (see docs/deployment.md)
+3. Set Root Directory to `backend`
+4. Set build command: `npm install`
+5. Set start command: `npm start`
+6. Add environment variables (see docs/deployment.md)
 
 ## 📖 Usage
 
-1. Visit your deployed frontend (GitHub Pages URL)
+1. Visit your deployed frontend
 2. Upload your HTML, CSS, and JavaScript files
 3. Configure app settings (name, package, icon)
 4. Click "Generate APK"
@@ -82,11 +81,10 @@ All generated APKs include "Powered by brelinx.com" branding in the app footer.
 
 ```
 WEBtoAPK/
-├── frontend/           # Static frontend (GitHub Pages)
-│   ├── index.html
-│   ├── style.css
-│   ├── app.js
-│   └── config.js
+├── index.html          # Frontend Entry
+├── style.css           # Frontend Styles
+├── app.js              # Frontend Logic
+├── config.js           # API Config
 ├── backend/            # Node.js API (Render.com)
 │   ├── server.js
 │   ├── routes/
