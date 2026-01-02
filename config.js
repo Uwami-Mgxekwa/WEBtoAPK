@@ -2,9 +2,9 @@
 const API_CONFIG = {
     // Development: local backend
     development: 'http://localhost:3000/api',
-    
+
     // Production: Render.com backend
-    production: 'https://webtoap.onrender.com/api'
+    production: 'https://webtoapk-wqpc.onrender.com/api'
 };
 
 // Detect environment
