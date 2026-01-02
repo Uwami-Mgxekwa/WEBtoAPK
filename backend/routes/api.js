@@ -70,15 +70,19 @@ router.post('/build', upload.fields([
 
         // Parse config
         const config = JSON.parse(req.body.config || '{}');
+        console.log(`[Job ${jobId}] Received build request for App: "${config.appName}" (${config.packageName})`);
+        console.log(`[Job ${jobId}] Uploaded ${req.files.files.length} file(s)`);
 
         // Validate config
         if (!config.appName || !config.packageName) {
+            console.warn(`[Job ${jobId}] Missing appName or packageName`);
             return res.status(400).json({ error: 'App name and package name are required' });
         }
 
         // Validate package name format
         const packageRegex = /^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/;
         if (!packageRegex.test(config.packageName)) {
+            console.warn(`[Job ${jobId}] Invalid package name: ${config.packageName}`);
             return res.status(400).json({
                 error: 'Invalid package name format. Use reverse domain notation (e.g., com.example.app)'
             });
@@ -90,6 +94,7 @@ router.post('/build', upload.fields([
         );
 
         if (!hasIndexHtml) {
+            console.warn(`[Job ${jobId}] index.html missing`);
             return res.status(400).json({ error: 'index.html is required' });
         }
 
@@ -107,10 +112,11 @@ router.post('/build', upload.fields([
         };
 
         jobs.set(jobId, job);
+        console.log(`[Job ${jobId}] Job queued. Starting build process...`);
 
         // Start build process asynchronously
         buildAPK(job).catch(error => {
-            console.error(`Build failed for job ${jobId}:`, error);
+            console.error(`[Job ${jobId}] Build FAILED:`, error);
             job.status = 'failed';
             job.error = error.message;
         });
@@ -185,19 +191,24 @@ async function buildAPK(job) {
         // Update status
         job.status = 'processing';
         job.progress = 10;
+        console.log(`[Job ${job.id}] Status: processing (10%)`);
 
         // Prepare files
         await fileHandler.prepareFiles(job);
         job.progress = 30;
+        console.log(`[Job ${job.id}] Status: files prepared (30%)`);
 
         // Build APK
         job.status = 'building';
+        console.log(`[Job ${job.id}] Status: building APK...`);
         const apkPath = await apkBuilder.buildAPK(job);
         job.progress = 80;
+        console.log(`[Job ${job.id}] Status: APK built! (80%)`);
 
         // Sign APK (if needed)
         job.status = 'signing';
         job.progress = 90;
+        console.log(`[Job ${job.id}] Status: signing... (90%)`);
 
         // Complete
         job.status = 'completed';
@@ -205,15 +216,15 @@ async function buildAPK(job) {
         job.apkUrl = `/downloads/${job.id}/${path.basename(apkPath)}`;
         job.completedAt = new Date().toISOString();
 
-        console.log(`✅ Build completed for job ${job.id}`);
+        console.log(`✅ [Job ${job.id}] SUCCESS! APK ready at: ${job.apkUrl}`);
 
         // Schedule cleanup after 1 hour
         setTimeout(async () => {
             try {
                 await fs.remove(job.uploadDir);
-                console.log(`🧹 Cleaned up upload directory for job ${job.id}`);
+                console.log(`🧹 [Job ${job.id}] Cleaned up upload directory`);
             } catch (error) {
-                console.error(`Cleanup error for job ${job.id}:`, error);
+                console.error(`[Job ${job.id}] Cleanup error:`, error);
             }
         }, 60 * 60 * 1000);
 

@@ -2,8 +2,9 @@ FROM node:18-bullseye
 
 # Set environment variables
 ENV ANDROID_SDK_ROOT /opt/android-sdk
+ENV ANDROID_HOME /opt/android-sdk
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
-ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools
+ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/33.0.2
 
 # Prevent interactive prompts during build
 ENV DEBIAN_FRONTEND=noninteractive

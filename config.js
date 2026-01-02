@@ -1,7 +1,8 @@
 // API Configuration
 const API_CONFIG = {
-    // Development: local backend
-    development: 'http://localhost:3000/api',
+    // Development: local backend (Uncomment to use local server)
+    // development: 'http://localhost:3000/api',
+    development: 'https://webtoapk-1-e8bh.onrender.com/api',
 
     // Production: Render.com backend
     production: 'https://webtoapk-1-e8bh.onrender.com/api'
