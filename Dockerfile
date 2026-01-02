@@ -37,14 +37,14 @@ RUN npm install -g cordova
 # Set working directory
 WORKDIR /app
 
-# Copy package files first for caching
-COPY package*.json ./
+# Copy package files from backend directory
+COPY backend/package*.json ./
 
 # Install Node.js dependencies
 RUN npm install
 
-# Copy application source code
-COPY . .
+# Copy backend source code
+COPY backend/ .
 
 # Create necessary directories
 RUN mkdir -p uploads builds temp
