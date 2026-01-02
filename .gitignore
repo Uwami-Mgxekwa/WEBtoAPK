@@ -1,0 +1,29 @@
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+.env.local
+
+# Uploads and builds
+backend/uploads/
+backend/builds/
+backend/temp/
+*.apk
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+logs/
+*.log
+
+# Android SDK (if installed locally)
+android-sdk/
