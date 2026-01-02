@@ -61,6 +61,20 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    /* Prevent font scaling in landscape */
+    width: 100%;
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (max-width: 768px) {
+
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+        /* Prevents zoom on focus */
+    }
 }
 
 /* Background Effects */
