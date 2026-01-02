@@ -1,0 +1,35 @@
+<style>
+    .brelinx-badge {
+        position: fixed;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(16, 185, 129, 0.9);
+        /* Green tint */
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        z-index: 99999;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(4px);
+        pointer-events: auto;
+        transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        opacity: 0.8;
+    }
+
+    .brelinx-badge:hover,
+    .brelinx-badge:active {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.05);
+    }
+</style>
+<a href="https://brelinx.com" class="brelinx-badge">
+    <span>⚡ Powered by brelinx.com</span>
+</a>
