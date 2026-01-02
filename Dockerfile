@@ -24,7 +24,9 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools \
     && wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O /tmp/tools.zip \
     && unzip -q /tmp/tools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools \
     && mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest \
-    && rm /tmp/tools.zip
+    && rm /tmp/tools.zip \
+    # Compability for Cordova/Gradle expecting 'tools'
+    && ln -s ${ANDROID_SDK_ROOT}/cmdline-tools/latest ${ANDROID_SDK_ROOT}/tools
 
 # Accept Android SDK Licenses
 RUN yes | sdkmanager --licenses
